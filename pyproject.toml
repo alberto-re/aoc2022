@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "adventofcode2022"
+version = "0.1.0"
+description = "Advent of Code 2022"
+authors = ["Alberto Re <alberto.re@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+black = "^21.11b1"
+mypy = "^0.910"
+pre-commit = "^2.16.0"
+vulture = "^2.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+day01 = "adventofcode2022.day01:main"
