@@ -20,3 +20,5 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 day01 = "adventofcode2022.day01:main"
+day02 = "adventofcode2022.day02:main"
+day03 = "adventofcode2022.day03:main"

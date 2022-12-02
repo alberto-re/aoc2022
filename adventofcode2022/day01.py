@@ -13,12 +13,15 @@ def calories_per_elf(lines: List[str]) -> List[int]:
             aggr.append(0)
     return aggr
 
+
 def main():
     with open("input/day01.txt") as f:
         lines = [line for line in f]
 
     print(f"Part one solution: {max(calories_per_elf(lines))}")
-    print(f"Part two solution: {sum(sorted(calories_per_elf(lines), reverse=True)[:3])}")
+    print(
+        f"Part two solution: {sum(sorted(calories_per_elf(lines), reverse=True)[:3])}"
+    )
 
 
 if __name__ == "__main__":
