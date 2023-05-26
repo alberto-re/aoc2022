@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # --- Day 7: No Space Left On Device ---
 
-from typing import List, DefaultDict
 from collections import defaultdict
+from typing import DefaultDict
 
 INPUT_PART1 = """
 $ cd /
@@ -30,7 +30,8 @@ $ ls
 7214296 k
 """
 
-def parse_output(lines: List[str]) -> DefaultDict[str, int]:
+
+def parse_output(lines: list[str]) -> DefaultDict[str, int]:
     pos = 0
     cwd = ["/"]
     curcmd = ""
@@ -60,9 +61,10 @@ def parse_output(lines: List[str]) -> DefaultDict[str, int]:
                 else:
                     size, _ = line.split()
                     for i in range(len(cwd)):
-                        dirsize["/".join(cwd[0:i+1])] += int(size)
+                        dirsize["/".join(cwd[0 : i + 1])] += int(size)
         pos += 1
     return dirsize
+
 
 exp_sizes = {
     "/": 48381165,
@@ -74,6 +76,7 @@ calc_sizes = parse_output(INPUT_PART1.strip().split("\n"))
 assert calc_sizes == exp_sizes
 
 assert sum([x for x in calc_sizes.values() if x <= 100000]) == 95437
+
 
 def main():
     with open("input/day07.txt") as f:

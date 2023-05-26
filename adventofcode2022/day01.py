@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 # --- Day 1: Calorie Counting ---
 
-from typing import List
 
-
-def calories_per_elf(lines: List[str]) -> List[int]:
+def calories_per_elf(lines: list[str]) -> list[int]:
     aggr = [0]
     for line in lines:
         try:

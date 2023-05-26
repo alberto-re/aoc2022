@@ -2,7 +2,6 @@
 # --- Day 5: Supply Stacks ---
 
 from copy import deepcopy
-from typing import List, Tuple
 
 INPUT_PART1 = """\
     [D]
@@ -17,11 +16,11 @@ move 1 from 1 to 2\
 """
 
 
-def input_lines(input: str) -> List[str]:
+def input_lines(input: str) -> list[str]:
     return [line for line in input.split("\n")]
 
 
-def split_input(lines: List[str]) -> Tuple[List[str], List[str]]:
+def split_input(lines: list[str]) -> tuple[list[str], list[str]]:
     stacks = []
     procedures = []
     empty_line_seen = False
@@ -41,10 +40,10 @@ assert len(stacks_text) == 4
 assert len(procedures) == 4
 
 
-def parse_stacks(lines: List[str]) -> List[List[str]]:
+def parse_stacks(lines: list[str]) -> list[list[str]]:
     lines.reverse()
     cols = lines.pop(0)
-    stacks: List[List[str]] = [[] for _ in range(max(map(int, cols.split())))]
+    stacks: list[list[str]] = [[] for _ in range(max(map(int, cols.split())))]
     for line in lines:
         for i in range(len(stacks)):
             try:
@@ -61,8 +60,8 @@ assert stacks == [["Z", "N"], ["M", "C", "D"], ["P"]]
 
 
 def move_stacks(
-    stacks: List[List[str]], procedures: List[str], retain: bool = False
-) -> List[List[str]]:
+    stacks: list[list[str]], procedures: list[str], retain: bool = False
+) -> list[list[str]]:
     result = deepcopy(stacks)
     for move in procedures:
         parts = move.split()

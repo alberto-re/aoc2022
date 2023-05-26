@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # --- Day 2: Rock Paper Scissors ---
 
-from typing import List
-
 oppo = {
     "A": "rock",
     "B": "paper",
@@ -26,7 +24,7 @@ score_shape = {"rock": 1, "paper": 2, "scissors": 3}
 score_outcome = {"lost": 0, "draw": 3, "won": 6}
 
 
-def guess_play(lines: List[str]) -> List[str]:
+def guess_play(lines: list[str]) -> list[str]:
     choice_to_symbol = {v: k for k, v in you.items()}
     lose = {v: k for k, v in wins.items()}
 
@@ -43,7 +41,7 @@ def guess_play(lines: List[str]) -> List[str]:
     return plays
 
 
-def total_score(lines: List[str]) -> int:
+def total_score(lines: list[str]) -> int:
     score = 0
     for line in lines:
         x, y = line.split()

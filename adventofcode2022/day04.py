@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # --- Day 4: Camp Cleanup ---
 
-from typing import List, Tuple
-
 INPUT_PART1 = """\
 2-4,6-8
 2-3,4-5
@@ -13,11 +11,11 @@ INPUT_PART1 = """\
 """
 
 
-def input_lines(input: str) -> List[str]:
+def input_lines(input: str) -> list[str]:
     return [line for line in input.split("\n")]
 
 
-def lines_to_assignment_pairs(lines: List[str]) -> List[Tuple[list, list]]:
+def lines_to_assignment_pairs(lines: list[str]) -> list[tuple[list, list]]:
     pairs = []
     for line in lines:
         assignments = line.split(",")
@@ -42,7 +40,7 @@ pairs = lines_to_assignment_pairs(input_lines(INPUT_PART1))
 assert pairs == expected
 
 
-def is_contained(x: List[int], y: List[int]) -> bool:
+def is_contained(x: list[int], y: list[int]) -> bool:
     return x[0] >= y[0] and x[1] <= y[1]
 
 
@@ -50,7 +48,7 @@ assert is_contained([3, 7], [2, 8])
 assert is_contained([6, 6], [4, 6])
 
 
-def is_contained_or_contains(x: List[int], y: List[int]) -> bool:
+def is_contained_or_contains(x: list[int], y: list[int]) -> bool:
     return is_contained(x, y) or is_contained(y, x)
 
 
@@ -60,7 +58,7 @@ assert is_contained_or_contains([6, 6], [4, 6])
 assert sum([is_contained_or_contains(pair[0], pair[1]) for pair in pairs]) == 2
 
 
-def overlaps(x: List[int], y: List[int]) -> bool:
+def overlaps(x: list[int], y: list[int]) -> bool:
     if x[0] <= y[0]:
         return y[0] >= x[0] and y[0] <= x[1]
     else:
