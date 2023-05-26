@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 # --- Day 5: Supply Stacks ---
 
-from typing import List, Tuple
 from copy import deepcopy
-
+from typing import List, Tuple
 
 INPUT_PART1 = """\
-    [D]    
-[N] [C]    
+    [D]
+[N] [C]
 [Z] [M] [P]
- 1   2   3 
+ 1   2   3
 
 move 1 from 2 to 1
 move 3 from 1 to 3
@@ -17,11 +16,12 @@ move 2 from 2 to 1
 move 1 from 1 to 2\
 """
 
+
 def input_lines(input: str) -> List[str]:
     return [line for line in input.split("\n")]
 
 
-def split_input(lines: List[str]) -> Tuple[List[str], List[str]]: 
+def split_input(lines: List[str]) -> Tuple[List[str], List[str]]:
     stacks = []
     procedures = []
     empty_line_seen = False
@@ -36,15 +36,15 @@ def split_input(lines: List[str]) -> Tuple[List[str], List[str]]:
     return stacks, procedures
 
 
-stacks, procedures = split_input(input_lines(INPUT_PART1))
-assert len(stacks) == 4
+stacks_text, procedures = split_input(input_lines(INPUT_PART1))
+assert len(stacks_text) == 4
 assert len(procedures) == 4
 
 
 def parse_stacks(lines: List[str]) -> List[List[str]]:
     lines.reverse()
     cols = lines.pop(0)
-    stacks = [[] for _ in range(max(map(int, cols.split())))]
+    stacks: List[List[str]] = [[] for _ in range(max(map(int, cols.split())))]
     for line in lines:
         for i in range(len(stacks)):
             try:
@@ -55,15 +55,18 @@ def parse_stacks(lines: List[str]) -> List[List[str]]:
                 continue
     return stacks
 
-stacks = parse_stacks(stacks)
-assert stacks == [['Z', 'N'], ['M', 'C', 'D'], ['P']]
+
+stacks = parse_stacks(stacks_text)
+assert stacks == [["Z", "N"], ["M", "C", "D"], ["P"]]
 
 
-def move_stacks(stacks: List[List[str]], procedures: List[str], retain: bool = False) -> List[List[str]]:
+def move_stacks(
+    stacks: List[List[str]], procedures: List[str], retain: bool = False
+) -> List[List[str]]:
     result = deepcopy(stacks)
     for move in procedures:
-        _, qty, _, origin, _, dest = move.split()
-        qty, origin, dest = int(qty), int(origin), int(dest)
+        parts = move.split()
+        qty, origin, dest = int(parts[1]), int(parts[3]), int(parts[5])
         tmp = []
         for _ in range(qty):
             tmp.append(result[origin - 1].pop())
