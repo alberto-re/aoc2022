@@ -12,9 +12,6 @@ class Knot:
     def touches(self, knot: "Knot") -> bool:
         return abs(self.x - knot.x) <= 1 and abs(self.y - knot.y) <= 1
 
-    def overlaps(self, knot: "Knot") -> bool:
-        return self.x == knot.x and self.y == knot.y
-
     def move_towards(self, knot: "Knot") -> None:
         if self.x < knot.x:
             self.x += 1
@@ -29,10 +26,6 @@ class Knot:
 assert Knot(1, 1).touches(Knot(1, 1))
 assert Knot(1, 1).touches(Knot(2, 2))
 assert not Knot(1, 1).touches(Knot(1, 3))
-
-assert Knot(1, 1).overlaps(Knot(1, 1))
-assert not Knot(1, 1).overlaps(Knot(2, 2))
-assert not Knot(1, 1).overlaps(Knot(1, 3))
 
 knot = Knot(1, 1)
 knot.move_towards(Knot(3, 1))
@@ -163,6 +156,10 @@ def main():
     rope = Rope([Knot(0, 0), Knot(0, 0)])
     path = rope.apply_motions(motions)
     print(f"Part one solution: {len(set(path))}")
+
+    rope = Rope([Knot(0, 0) for _ in range(10)])
+    path = rope.apply_motions(motions)
+    print(f"Part two solution: {len(set(path))}")
 
 
 if __name__ == "__main__":
