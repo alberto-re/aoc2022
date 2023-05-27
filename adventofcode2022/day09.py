@@ -149,7 +149,7 @@ path = rope.apply_motions(motions)
 assert len(set(path)) == 13
 
 
-def main():
+def main() -> None:
     with open("input/day09.txt") as f:
         motions = parse_motions(f.read())
 

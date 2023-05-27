@@ -86,7 +86,7 @@ def badge_priorities(rucksacks: list[str]) -> list[int]:
     return priorities
 
 
-def main():
+def main() -> None:
     with open("input/day03.txt") as f:
         lines = [line.rstrip() for line in f]
 

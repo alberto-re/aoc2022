@@ -78,7 +78,7 @@ assert calc_sizes == exp_sizes
 assert sum([x for x in calc_sizes.values() if x <= 100000]) == 95437
 
 
-def main():
+def main() -> None:
     with open("input/day07.txt") as f:
         lines = [line.rstrip() for line in f]
 

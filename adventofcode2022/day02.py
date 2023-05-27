@@ -59,7 +59,7 @@ def total_score(lines: list[str]) -> int:
     return score
 
 
-def main():
+def main() -> None:
     with open("input/day02.txt") as f:
         lines = [line for line in f]
 

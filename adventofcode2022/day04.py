@@ -71,7 +71,7 @@ assert overlaps([6, 6], [4, 6])
 assert overlaps([2, 6], [4, 8])
 
 
-def main():
+def main() -> None:
     with open("input/day04.txt") as f:
         lines = [line.rstrip() for line in f]
 

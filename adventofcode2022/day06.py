@@ -21,7 +21,7 @@ for key, value in INPUT_PART1.items():
     assert find_marker(key) == value, f"Expected {value} but got {find_marker(key)}"
 
 
-def main():
+def main() -> None:
     with open("input/day06.txt") as f:
         line = f.readline().strip()
 

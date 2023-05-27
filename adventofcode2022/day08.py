@@ -95,7 +95,7 @@ assert scenic_score(distances) == scenic_score(
 ), f"Expected 4, got {distances}"
 
 
-def main():
+def main() -> None:
     with open("input/day08.txt") as f:
         grid = parse_input(f.read())
 

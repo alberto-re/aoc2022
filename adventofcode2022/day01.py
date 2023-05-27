@@ -12,7 +12,7 @@ def calories_per_elf(lines: list[str]) -> list[int]:
     return aggr
 
 
-def main():
+def main() -> None:
     with open("input/day01.txt") as f:
         lines = [line for line in f]
 

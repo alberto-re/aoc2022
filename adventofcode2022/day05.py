@@ -83,15 +83,14 @@ moved = move_stacks(stacks, procedures, retain=True)
 assert "".join([stack[-1] for stack in moved]) == "MCD"
 
 
-def main():
+def main() -> None:
     with open("input/day05.txt") as f:
         lines = [line.rstrip() for line in f]
 
     stacks, procedures = split_input(lines)
-    stacks = parse_stacks(stacks)
-    moved = move_stacks(stacks, procedures)
+    moved = move_stacks(parse_stacks(stacks), procedures)
     print(f"Part one solution: {''.join([stack[-1] for stack in moved])}")
-    moved = move_stacks(stacks, procedures, retain=True)
+    moved = move_stacks(parse_stacks(stacks), procedures, retain=True)
     print(f"Part two solution: {''.join([stack[-1] for stack in moved])}")
 
 
