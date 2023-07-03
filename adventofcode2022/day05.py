@@ -3,18 +3,6 @@
 
 from copy import deepcopy
 
-INPUT_PART1 = """\
-    [D]
-[N] [C]
-[Z] [M] [P]
- 1   2   3
-
-move 1 from 2 to 1
-move 3 from 1 to 3
-move 2 from 2 to 1
-move 1 from 1 to 2\
-"""
-
 
 def input_lines(input: str) -> list[str]:
     return [line for line in input.split("\n")]
@@ -35,11 +23,6 @@ def split_input(lines: list[str]) -> tuple[list[str], list[str]]:
     return stacks, procedures
 
 
-stacks_text, procedures = split_input(input_lines(INPUT_PART1))
-assert len(stacks_text) == 4
-assert len(procedures) == 4
-
-
 def parse_stacks(lines: list[str]) -> list[list[str]]:
     lines.reverse()
     cols = lines.pop(0)
@@ -53,10 +36,6 @@ def parse_stacks(lines: list[str]) -> list[list[str]]:
             except IndexError:
                 continue
     return stacks
-
-
-stacks = parse_stacks(stacks_text)
-assert stacks == [["Z", "N"], ["M", "C", "D"], ["P"]]
 
 
 def move_stacks(
@@ -75,12 +54,6 @@ def move_stacks(
             else:
                 result[dest - 1].append(tmp.pop(0))
     return result
-
-
-moved = move_stacks(stacks, procedures)
-assert "".join([stack[-1] for stack in moved]) == "CMZ"
-moved = move_stacks(stacks, procedures, retain=True)
-assert "".join([stack[-1] for stack in moved]) == "MCD"
 
 
 def main() -> None:

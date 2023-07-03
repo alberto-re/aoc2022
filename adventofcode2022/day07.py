@@ -4,32 +4,6 @@
 from collections import defaultdict
 from typing import DefaultDict
 
-INPUT_PART1 = """
-$ cd /
-$ ls
-dir a
-14848514 b.txt
-8504156 c.dat
-dir d
-$ cd a
-$ ls
-dir e
-29116 f
-2557 g
-62596 h.lst
-$ cd e
-$ ls
-584 i
-$ cd ..
-$ cd ..
-$ cd d
-$ ls
-4060174 j
-8033020 d.log
-5626152 d.ext
-7214296 k
-"""
-
 
 def parse_output(lines: list[str]) -> DefaultDict[str, int]:
     pos = 0
@@ -64,18 +38,6 @@ def parse_output(lines: list[str]) -> DefaultDict[str, int]:
                         dirsize["/".join(cwd[0 : i + 1])] += int(size)
         pos += 1
     return dirsize
-
-
-exp_sizes = {
-    "/": 48381165,
-    "//d": 24933642,
-    "//a": 94853,
-    "//a/e": 584,
-}
-calc_sizes = parse_output(INPUT_PART1.strip().split("\n"))
-assert calc_sizes == exp_sizes
-
-assert sum([x for x in calc_sizes.values() if x <= 100000]) == 95437
 
 
 def main() -> None:

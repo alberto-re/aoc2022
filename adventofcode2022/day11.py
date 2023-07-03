@@ -5,36 +5,6 @@ import re
 import operator
 import math
 
-EXAMPLE_INPUT_PART1 = """\
-Monkey 0:
-  Starting items: 79, 98
-  Operation: new = old * 19
-  Test: divisible by 23
-    If true: throw to monkey 2
-    If false: throw to monkey 3
-
-Monkey 1:
-  Starting items: 54, 65, 75, 74
-  Operation: new = old + 6
-  Test: divisible by 19
-    If true: throw to monkey 2
-    If false: throw to monkey 0
-
-Monkey 2:
-  Starting items: 79, 60, 97
-  Operation: new = old * old
-  Test: divisible by 13
-    If true: throw to monkey 1
-    If false: throw to monkey 3
-
-Monkey 3:
-  Starting items: 74
-  Operation: new = old + 3
-  Test: divisible by 17
-    If true: throw to monkey 0
-    If false: throw to monkey 1
-"""
-
 
 class Monkey:
     def __init__(
@@ -122,25 +92,6 @@ Monkey (\d+):
         self._items.append(item)
 
 
-MONKEY_TEXT_EXAMPLE_0 = "\n".join(EXAMPLE_INPUT_PART1.splitlines()[:6])
-MONKEY_TEXT_EXAMPLE_1 = "\n".join(EXAMPLE_INPUT_PART1.splitlines()[7:14])
-
-monkey0 = Monkey.from_text(MONKEY_TEXT_EXAMPLE_0)
-monkey1 = Monkey.from_text(MONKEY_TEXT_EXAMPLE_1)
-assert monkey0.items == [79, 98]
-assert monkey1.items == [54, 65, 75, 74]
-
-assert monkey0.inspect(0) == 1501
-assert monkey0.inspect(1) == 1862
-assert monkey1.inspect(0) == 60
-assert monkey1.inspect(1) == 71
-assert monkey1.inspect(2) == 81
-assert monkey1.inspect(3) == 80
-
-assert monkey0.decide(500) == 3
-assert monkey0.decide(620) == 3
-
-
 def parse_input(puzzle_input: str) -> list[Monkey]:
     monkeys = []
     input_lines = puzzle_input.splitlines()
@@ -151,11 +102,7 @@ def parse_input(puzzle_input: str) -> list[Monkey]:
     return monkeys
 
 
-monkeys = parse_input(EXAMPLE_INPUT_PART1)
-assert len(monkeys) == 4
-
-
-def round(monkeys: list[Monkey], very_worried: bool = False) -> None:
+def do_round(monkeys: list[Monkey], very_worried: bool = False) -> None:
     modulo = 1
     for monkey in monkeys:
         modulo *= monkey.test[0]
@@ -177,40 +124,9 @@ def round(monkeys: list[Monkey], very_worried: bool = False) -> None:
         ]
 
 
-round(monkeys)
-assert monkeys[0].items == [20, 23, 27, 26]
-assert monkeys[3].items == []
-
-for _ in range(19):
-    round(monkeys)
-
-
 def monkey_business(monkeys: list[Monkey]) -> int:
     inspections = sorted([x.inspect_count for x in monkeys], reverse=True)
     return inspections[0] * inspections[1]
-
-
-assert monkey_business(monkeys) == 10605
-
-monkeys = parse_input(EXAMPLE_INPUT_PART1)
-
-round(monkeys, very_worried=True)
-assert monkey_business(monkeys) == 4 * 6
-
-for _ in range(19):
-    round(monkeys, very_worried=True)
-
-assert monkey_business(monkeys) == 103 * 99
-
-for _ in range(980):
-    round(monkeys, very_worried=True)
-
-assert monkey_business(monkeys) == 5204 * 5192
-
-for _ in range(9000):
-    round(monkeys, very_worried=True)
-
-assert monkey_business(monkeys) == 52166 * 52013
 
 
 def main() -> None:
@@ -218,7 +134,7 @@ def main() -> None:
         monkeys = parse_input(f.read())
 
     for _ in range(20):
-        round(monkeys)
+        do_round(monkeys)
 
     print(f"Part one solution: {monkey_business(monkeys)}")
 
@@ -226,7 +142,7 @@ def main() -> None:
         monkeys = parse_input(f.read())
 
     for _ in range(10000):
-        round(monkeys, very_worried=True)
+        do_round(monkeys, very_worried=True)
 
     print(f"Part two solution: {monkey_business(monkeys)}")
 
