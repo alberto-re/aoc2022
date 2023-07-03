@@ -1,1 +1,3 @@
-# adventofcode2022
+# aoc2022
+
+My solutions to [Advent of Code 2022](https://adventofcode.com/2022).
