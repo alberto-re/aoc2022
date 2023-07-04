@@ -55,7 +55,6 @@ def test_monkey_inspect():
 
 def test_monkey_decide():
     monkey0 = Monkey.from_text(MONKEY_TEXT_EXAMPLE_0)
-    monkey1 = Monkey.from_text(MONKEY_TEXT_EXAMPLE_1)
     assert monkey0.decide(500) == 3
     assert monkey0.decide(620) == 3
 
