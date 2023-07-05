@@ -24,7 +24,10 @@ jobs:
           curl -sSL https://install.python-poetry.org | python3 -
       - name: Install dependencies
         run: |
-          poetry install
+          poetry install --with=dev
       - name: Pre-commit stuff
         run: |
           poetry run pre-commit run --all-files
+      - name: Pytest
+        run: |
+          poetry run pytest
